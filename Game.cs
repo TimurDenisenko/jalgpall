@@ -8,12 +8,12 @@ namespace jalgpall
 {
     public class Game
     {
-        public Team HomeTeam { get; }
-        public Team AwayTeam { get; }
-        public Stadium Stadium { get; }
-        public Ball Ball { get; private set; }
+        public Team HomeTeam { get; } //Первая команда, представитель класса Team, с параметром получения значения 
+        public Team AwayTeam { get; } //Вторая аналогичная команда
+        public Stadium Stadium { get; } //Стадион, представитель класса Stadium, с параметром получения значения
+        public Ball Ball { get; private set; } //Мяч, представитель класса Ball, с параметром публичного получения и приватной установки
 
-        public Game(Team homeTeam, Team awayTeam, Stadium stadium)
+        public Game(Team homeTeam, Team awayTeam, Stadium stadium) //конструктор игры при обьектах команды и стадион
         {
             HomeTeam = homeTeam;
             homeTeam.Game = this;
@@ -22,28 +22,28 @@ namespace jalgpall
             Stadium = stadium;
         }
 
-        public void Start()
+        public void Start() //Запуск игры 
         {
-            Ball = new Ball(Stadium.Width / 2, Stadium.Height / 2, this);
-            HomeTeam.StartGame(Stadium.Width / 2, Stadium.Height);
-            AwayTeam.StartGame(Stadium.Width / 2, Stadium.Height);
+            Ball = new Ball(Stadium.Width / 2, Stadium.Height / 2, this); //создаем мяч в центре поля
+            HomeTeam.StartGame(Stadium.Width / 2, Stadium.Height); //создаем 1 команду 
+            AwayTeam.StartGame(Stadium.Width / 2, Stadium.Height); //создаем 2 команду
         }
-        private (double, double) GetPositionForAwayTeam(double x, double y)
+        private (double, double) GetPositionForAwayTeam(double x, double y)  //получаем позицию второй команды
         {
             return (Stadium.Width - x, Stadium.Height - y);
         }
 
-        public (double, double) GetPositionForTeam(Team team, double x, double y)
+        public (double, double) GetPositionForTeam(Team team, double x, double y)  //получаем позицию для команд
         {
             return team == HomeTeam ? (x, y) : GetPositionForAwayTeam(x, y);
         }
 
-        public (double, double) GetBallPositionForTeam(Team team)
+        public (double, double) GetBallPositionForTeam(Team team) //получаем позицию мяча для команд
         {
             return GetPositionForTeam(team, Ball.X, Ball.Y);
         }
 
-        public void SetBallSpeedForTeam(Team team, double vx, double vy)
+        public void SetBallSpeedForTeam(Team team, double vx, double vy) //устанавливаем скорость мяча для команд
         {
             if (team == HomeTeam)
             {
@@ -55,7 +55,7 @@ namespace jalgpall
             }
         }
 
-        public void Move()
+        public void Move() //осуществляем передвижение команд и мяча
         {
             HomeTeam.Move();
             AwayTeam.Move();

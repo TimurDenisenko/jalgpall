@@ -8,27 +8,27 @@ namespace jalgpall
 {
     public class Ball
     {
-        public double X { get; private set; }
-        public double Y { get; private set; }
+        public double X { get; private set; } //координата х, с публичным параметром получения и приватный параметр установки
+        public double Y { get; private set; } //координата у с аналогичным описанием
 
-        private double _vx, _vy;
+        private double _vx, _vy; //приватная переменная координат мяча
 
-        private Game _game;
+        private Game _game; //создаем приватный обьект игра класса Game
 
-        public Ball(double x, double y, Game game)
+        public Ball(double x, double y, Game game) //конструктор который учитывает параметры координат и обьекта игры
         {
             _game = game;
             X = x;
             Y = y;
         }
 
-        public void SetSpeed(double vx, double vy)
+        public void SetSpeed(double vx, double vy) //устанавливаем скорость мяча
         {
             _vx = vx;
             _vy = vy;
         }
 
-        public void Move()
+        public void Move() //передвижение мяча
         {
             double newX = X + _vx;
             double newY = Y + _vy;

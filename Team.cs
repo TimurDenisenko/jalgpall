@@ -8,19 +8,19 @@ namespace jalgpall
 {
     public class Team
     {
-        public List<Player> Players { get; } = new List<Player>();
-        public string Name { get; private set; }
-        public Game Game { get; set; }
+        public List<Player> Players { get; } = new List<Player>(); //список игроков *представители класса Player* с параметром получения
+        public string Name { get; private set; } //Название команды с параметром публичного получения и приватной установки значения
+        public Game Game { get; set; } //Назначение игры создавая обьект класса Game
 
-        public Team(string name)
+        public Team(string name) //конструктор создания команды используя текстовое значение имени
         {
             Name = name;
         }
 
-        public void StartGame(int width, int height)
+        public void StartGame(int width, int height) //Начало игры учитывая параметры высоты и ширины 
         {
             Random rnd = new Random();
-            foreach (var player in Players)
+            foreach (var player in Players) //задаем позицию каждого игрока
             {
                 player.SetPosition(
                     rnd.NextDouble() * width,
@@ -29,31 +29,31 @@ namespace jalgpall
             }
         }
 
-        public void AddPlayer(Player player)
+        public void AddPlayer(Player player) //Добавляем игрока, представитель класса Player
         {
-            if (player.Team != null) return;
+            if (player.Team != null) return; //если игрок не равен null
             Players.Add(player);
-            player.Team = this;
+            player.Team = this; //обнуляем значение
         }
 
-        public (double, double) GetBallPosition()
+        public (double, double) GetBallPosition() //получаем позицию мяча
         {
-            return Game.GetBallPositionForTeam(this);
+            return Game.GetBallPositionForTeam(this); 
         }
 
-        public void SetBallSpeed(double vx, double vy)
+        public void SetBallSpeed(double vx, double vy) //устанаваливаем скорость мяча
         {
-            Game.SetBallSpeedForTeam(this, vx, vy);
+            Game.SetBallSpeedForTeam(this, vx, vy); 
         }
 
-        public Player GetClosestPlayerToBall()
+        public Player GetClosestPlayerToBall() //ищем ближайшего игрока к мячу
         {
             Player closestPlayer = Players[0];
             double bestDistance = Double.MaxValue;
             foreach (var player in Players)
             {
                 var distance = player.GetDistanceToBall();
-                if (distance < bestDistance)
+                if (distance < bestDistance) //ищем этого игрока
                 {
                     closestPlayer = player;
                     bestDistance = distance;
@@ -63,9 +63,9 @@ namespace jalgpall
             return closestPlayer;
         }
 
-        public void Move()
+        public void Move() //передвигаем ближайшего игрока к мячу
         {
-            GetClosestPlayerToBall().MoveTowardsBall();
+            GetClosestPlayerToBall().MoveTowardsBall(); 
             Players.ForEach(player => player.Move());
         }
     }

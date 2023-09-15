@@ -8,15 +8,14 @@ namespace jalgpall
 {
     public class Stadium
     {
-        public Stadium(int width, int height)
+        public int Width { get; } //ширина с параметром получения
+        public int Height { get; } //высота с параметром получения
+
+        public Stadium(int width, int height) //конструктор который учитывает лишь ширину и высоту
         {
             Width = width;
             Height = height;
         }
-
-        public int Width { get; }
-
-        public int Height { get; }
 
         public bool IsIn(double x, double y) //возвращает правду или ложь в зависимости от того находится мяч на поле или вне поля
         {
