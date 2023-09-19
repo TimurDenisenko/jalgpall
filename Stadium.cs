@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace jalgpall
 {
-    public class Stadium
+    public class Stadium : Figure
     {
         public int Width { get; } //ширина с параметром получения
         public int Height { get; } //высота с параметром получения
@@ -15,6 +15,8 @@ namespace jalgpall
         {
             Width = width;
             Height = height;
+            Walls walls = new Walls(width, height);
+            walls.Draw();
         }
 
         public bool IsIn(double x, double y) //возвращает правду или ложь в зависимости от того находится мяч на поле или вне поля

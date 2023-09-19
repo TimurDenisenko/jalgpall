@@ -25,8 +25,8 @@ namespace jalgpall
         public void Start() //Запуск игры 
         {
             Ball = new Ball(Stadium.Width / 2, Stadium.Height / 2, this); //создаем мяч в центре поля
-            HomeTeam.StartGame(Stadium.Width / 2, Stadium.Height); //создаем 1 команду 
-            AwayTeam.StartGame(Stadium.Width / 2, Stadium.Height); //создаем 2 команду
+            HomeTeam.StartGame((Stadium.Width) / 2, Stadium.Height,1); //создаем 1 команду 
+            AwayTeam.StartGame(Stadium.Width, Stadium.Height,2); //создаем 2 команду
         }
         private (double, double) GetPositionForAwayTeam(double x, double y)  //получаем позицию второй команды
         {

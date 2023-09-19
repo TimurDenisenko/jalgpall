@@ -15,11 +15,12 @@ namespace jalgpall
 
         private Game _game; //создаем приватный обьект игра класса Game
 
-        public Ball(double x, double y, Game game) //конструктор который учитывает параметры координат и обьекта игры
+        public Ball(int x, int y, Game game) //конструктор который учитывает параметры координат и обьекта игры
         {
             _game = game;
             X = x;
             Y = y;
+            new Point(x, y,"*").Draw();
         }
 
         public void SetSpeed(double vx, double vy) //устанавливаем скорость мяча

@@ -17,15 +17,31 @@ namespace jalgpall
             Name = name;
         }
 
-        public void StartGame(int width, int height) //Начало игры учитывая параметры высоты и ширины 
+        public void StartGame(int width, int height, int team) //Начало игры учитывая параметры высоты и ширины 
         {
             Random rnd = new Random();
             foreach (var player in Players) //задаем позицию каждого игрока
             {
-                player.SetPosition(
-                    rnd.NextDouble() * width,
-                    rnd.NextDouble() * height
-                    );
+                switch (team)
+                {
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        player.SetPosition(
+                        rnd.Next(1, width-1),
+                        rnd.Next(3, height-1)
+                        );
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        player.SetPosition(
+                        rnd.Next(41, width-1),
+                        rnd.Next(3, height-1)
+                        );
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                }
+
             }
         }
 

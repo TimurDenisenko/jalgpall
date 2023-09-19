@@ -27,7 +27,7 @@ namespace jalgpall
             Name = name;
         }
 
-        public Player(string name, double x, double y, Team team) // конструктор создания игрока используя имя, координаты и команду
+        public Player(string name, int x, int y, Team team) // конструктор создания игрока используя имя, координаты и команду
         {
             Name = name;
             X = x;
@@ -35,10 +35,11 @@ namespace jalgpall
             Team = team;
         }
 
-        public void SetPosition(double x, double y)  //установка координатов игрока
+        public void SetPosition(int x, int y)  //установка координатов игрока
         {
             X = x;
             Y = y;
+            new Point(x, y, "I").Draw();
         }
 
         public (double, double) GetAbsolutePosition()  //получение абсолютной позиции
@@ -87,6 +88,8 @@ namespace jalgpall
             {
                 X = newX;
                 Y = newY;
+                new Point(Convert.ToInt32(_vx), Convert.ToInt32(_vy),"").Clear();
+                new Point(Convert.ToInt32(X), Convert.ToInt32(Y),"I").Draw();  
             }
             else
             {
