@@ -58,7 +58,11 @@ namespace jalgpall
         public void Move() //осуществляем передвижение команд и мяча
         {
             HomeTeam.Move();
+            Console.SetCursorPosition(0, 20);
+            Console.WriteLine(HomeTeam.GetBallPosition());
             AwayTeam.Move();
+            Console.SetCursorPosition(0, 21);
+            Console.WriteLine(AwayTeam.GetBallPosition());
             Ball.Move();
         }
     }

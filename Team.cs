@@ -25,24 +25,22 @@ namespace jalgpall
                 switch (team)
                 {
                     case 1:
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Green;
                         player.SetPosition(
                         rnd.Next(1, width-1),
                         rnd.Next(3, height-1)
                         );
-                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 2:
                         Console.ForegroundColor = ConsoleColor.Blue;
                         player.SetPosition(
-                        rnd.Next(41, width-1),
+                        rnd.Next(width/2+1, width-2),
                         rnd.Next(3, height-1)
                         );
-                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
-
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void AddPlayer(Player player) //Добавляем игрока, представитель класса Player

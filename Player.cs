@@ -15,24 +15,27 @@ namespace jalgpall
         private double _vx, _vy; //расстояние игрока и мяча
         public Team? Team { get; set; } = null; //команда где играет игрок
 
-        private const double MaxSpeed = 5; //максимальная скрость игрока
-        private const double MaxKickSpeed = 25; //максимальная скорость удара
-        private const double BallKickDistance = 10; //дистанция удара меча
+        private const double MaxSpeed = 3; //максимальная скрость игрока
+        private const double MaxKickSpeed = 10; //максимальная скорость удара
+        private const double BallKickDistance = 2; //дистанция удара меча
 
         private Random _random = new Random(); //рандомное число
+        private int TeamInt;
 
         //конструкторы
-        public Player(string name)   //конструктор создания игрока используя только имя
+        public Player(string name, int teamInt)   //конструктор создания игрока используя только имя
         {
             Name = name;
+            TeamInt = teamInt;
         }
 
-        public Player(string name, int x, int y, Team team) // конструктор создания игрока используя имя, координаты и команду
+        public Player(string name, int x, int y, Team team, int teamInt) // конструктор создания игрока используя имя, координаты и команду
         {
             Name = name;
             X = x;
             Y = y;
             Team = team;
+            TeamInt = teamInt;  
         }
 
         public void SetPosition(int x, int y)  //установка координатов игрока
@@ -76,8 +79,8 @@ namespace jalgpall
             if (GetDistanceToBall() < BallKickDistance) //если дистанция мяча меньше дистанции удара мяча
             {
                 Team.SetBallSpeed(
-                    MaxKickSpeed * _random.NextDouble(),
-                    MaxKickSpeed * (_random.NextDouble() - 0.5)
+                    MaxKickSpeed * 1,
+                    MaxKickSpeed * (1 - 0.5)
                     ); //устанавливаем скорость мяча
             }
 
@@ -86,10 +89,25 @@ namespace jalgpall
             var newAbsolutePosition = Team.Game.GetPositionForTeam(Team, newX, newY);
             if (Team.Game.Stadium.IsIn(newAbsolutePosition.Item1, newAbsolutePosition.Item2)) //проверяем находится ли мяч на поле или нет и устанавливаем координаты
             {
+                
+                if (newX != X || newY != Y)
+                {
+                    new Point(Convert.ToInt32(X), Convert.ToInt32(Y), "").Clear();
+                }
                 X = newX;
                 Y = newY;
-                new Point(Convert.ToInt32(_vx), Convert.ToInt32(_vy),"").Clear();
-                new Point(Convert.ToInt32(X), Convert.ToInt32(Y),"I").Draw();  
+                switch (TeamInt)
+                {
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        SetPosition(Convert.ToInt32(X), Convert.ToInt32(Y));
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        SetPosition(Convert.ToInt32(X), Convert.ToInt32(Y));
+                        break;
+                }
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {

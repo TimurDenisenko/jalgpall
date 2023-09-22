@@ -12,23 +12,28 @@ namespace jalgpall
         {
             while (true)
             {
+                Console.Clear();
                 Console.SetWindowSize(80, 20);
                 Console.SetBufferSize(600, 400);
                 Team t1 = new Team("1T");
                 Team t2 = new Team("2T");
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < 2; i++)
                 {
-                    t1.AddPlayer(new Player(""+i));
+                    t1.AddPlayer(new Player("" + i, 1));
                 }
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < 2; i++)
                 {
-                    t2.AddPlayer(new Player(""+(i+10)));
+                    t2.AddPlayer(new Player("" + (i + 10), 2));
                 }
                 Stadium stadium = new Stadium(80, 20);
                 Game game = new Game(t1, t2, stadium);
                 game.Start();
-                game.Move();
-                Console.ReadLine();
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                while (keyInfo.Key != ConsoleKey.R)
+                {
+                    keyInfo = Console.ReadKey();
+                    game.Move();
+                }
             }
         }
     }

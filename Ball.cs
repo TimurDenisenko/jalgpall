@@ -33,16 +33,16 @@ namespace jalgpall
         {
             double newX = X + _vx;
             double newY = Y + _vy;
-            if (_game.Stadium.IsIn(newX, newY))
+            if (_game.Stadium.IsIn(newX, newY) && newX!=X && newY!=Y)
             {
+                new Point(Convert.ToInt32(X), Convert.ToInt32(Y), "").Clear();
                 X = newX;
                 Y = newY;
+                new Point(Convert.ToInt32(X), Convert.ToInt32(Y), "*").Draw();
             }
-            else
-            {
-                _vx = 0;
-                _vy = 0;
-            }
+
+            _vx = 0;
+            _vy = 0;
         }
 
     }
