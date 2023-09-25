@@ -17,16 +17,18 @@ namespace jalgpall
                 Console.SetBufferSize(600, 400);
                 Team t1 = new Team("1T");
                 Team t2 = new Team("2T");
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     t1.AddPlayer(new Player("" + i, 1));
                 }
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     t2.AddPlayer(new Player("" + (i + 10), 2));
                 }
                 Stadium stadium = new Stadium(80, 20);
                 Game game = new Game(t1, t2, stadium);
+                t1.Game = game;
+                t2.Game = game;
                 game.Start();
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
                 while (keyInfo.Key != ConsoleKey.R)

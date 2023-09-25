@@ -52,7 +52,7 @@ namespace jalgpall
 
         public (double, double) GetBallPosition() //получаем позицию мяча
         {
-            return Game.GetBallPositionForTeam(this); 
+            return (Game.Ball.X, Game.Ball.Y);
         }
 
         public void SetBallSpeed(double vx, double vy) //устанаваливаем скорость мяча

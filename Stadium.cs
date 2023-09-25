@@ -21,7 +21,7 @@ namespace jalgpall
 
         public bool IsIn(double x, double y) //возвращает правду или ложь в зависимости от того находится мяч на поле или вне поля
         {
-            return x >= 1 && x < Width && y >= 3 && y < Height-1;
+            return x >= 1 && x < Width-1 && y >= 3 && y < Height-1;
         }
     }
 }

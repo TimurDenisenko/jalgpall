@@ -15,7 +15,7 @@ namespace jalgpall
         private double _vx, _vy; //расстояние игрока и мяча
         public Team? Team { get; set; } = null; //команда где играет игрок
 
-        private const double MaxSpeed = 3; //максимальная скрость игрока
+        private const double MaxSpeed = 1; //максимальная скрость игрока
         private const double MaxKickSpeed = 10; //максимальная скорость удара
         private const double BallKickDistance = 2; //дистанция удара меча
 
@@ -79,8 +79,8 @@ namespace jalgpall
             if (GetDistanceToBall() < BallKickDistance) //если дистанция мяча меньше дистанции удара мяча
             {
                 Team.SetBallSpeed(
-                    MaxKickSpeed * 1,
-                    MaxKickSpeed * (1 - 0.5)
+                    MaxKickSpeed * _random.NextDouble(),
+                    MaxKickSpeed * (_random.NextDouble() - 0.5)
                     ); //устанавливаем скорость мяча
             }
 

@@ -45,7 +45,7 @@ namespace jalgpall
 
         public void SetBallSpeedForTeam(Team team, double vx, double vy) //устанавливаем скорость мяча для команд
         {
-            if (team == HomeTeam)
+            if (HomeTeam==team)
             {
                 Ball.SetSpeed(vx, vy);
             }
@@ -58,11 +58,7 @@ namespace jalgpall
         public void Move() //осуществляем передвижение команд и мяча
         {
             HomeTeam.Move();
-            Console.SetCursorPosition(0, 20);
-            Console.WriteLine(HomeTeam.GetBallPosition());
             AwayTeam.Move();
-            Console.SetCursorPosition(0, 21);
-            Console.WriteLine(AwayTeam.GetBallPosition());
             Ball.Move();
         }
     }
