@@ -8,7 +8,7 @@ namespace jalgpall
 {
     class VerLine : Figure
     {
-        public VerLine(int yLeft, int yRight, int x, string sym)
+        public VerLine(int yLeft, int yRight, int x, string sym) //Конструктор для рисования вертикальной линии
         {
             pList = new List<Point>();
             for (int i = yLeft; i <= yRight; i++)

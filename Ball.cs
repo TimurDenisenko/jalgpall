@@ -40,7 +40,6 @@ namespace jalgpall
                 Y = newY;
                 new Point(Convert.ToInt32(X), Convert.ToInt32(Y), "*").Draw();
             }
-
             _vx = 0;
             _vy = 0;
         }

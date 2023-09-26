@@ -10,31 +10,29 @@ namespace jalgpall
     {
         public static void Main()
         {
-            while (true)
+            
+            int n=0;
+            while (n!=3)
             {
-                Console.Clear();
-                Console.SetWindowSize(80, 20);
                 Console.SetBufferSize(600, 400);
-                Team t1 = new Team("1T");
-                Team t2 = new Team("2T");
-                for (int i = 0; i < 11; i++)
+                Game game = new Game().Setting();
+                while (true)
                 {
-                    t1.AddPlayer(new Player("" + i, 1));
-                }
-                for (int i = 0; i < 11; i++)
-                {
-                    t2.AddPlayer(new Player("" + (i + 10), 2));
-                }
-                Stadium stadium = new Stadium(80, 20);
-                Game game = new Game(t1, t2, stadium);
-                t1.Game = game;
-                t2.Game = game;
-                game.Start();
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-                while (keyInfo.Key != ConsoleKey.R)
-                {
-                    keyInfo = Console.ReadKey();
-                    game.Move();
+                    n = game.Menu();
+                    if (n==1)
+                    { }
+                    else if (n==2 || n==3)
+                    {
+                        break;
+                    }
+                    Console.Clear();
+                    game.Start();
+                    ConsoleKeyInfo keyInfo = Console.ReadKey();
+                    while (keyInfo.Key != ConsoleKey.R)
+                    {
+                        game.Move();
+                        keyInfo = Console.ReadKey();
+                    }
                 }
             }
         }

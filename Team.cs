@@ -11,6 +11,7 @@ namespace jalgpall
         public List<Player> Players { get; } = new List<Player>(); //список игроков *представители класса Player* с параметром получения
         public string Name { get; private set; } //Название команды с параметром публичного получения и приватной установки значения
         public Game Game { get; set; } //Назначение игры создавая обьект класса Game
+        public int Win { get; set; }
 
         public Team(string name) //конструктор создания команды используя текстовое значение имени
         {
@@ -28,14 +29,14 @@ namespace jalgpall
                         Console.ForegroundColor = ConsoleColor.Green;
                         player.SetPosition(
                         rnd.Next(1, width-1),
-                        rnd.Next(3, height-1)
+                        rnd.Next(4, height-1)
                         );
                         break;
                     case 2:
                         Console.ForegroundColor = ConsoleColor.Blue;
                         player.SetPosition(
                         rnd.Next(width/2+1, width-2),
-                        rnd.Next(3, height-1)
+                        rnd.Next(4, height-1)
                         );
                         break;
                 }
@@ -81,6 +82,11 @@ namespace jalgpall
         {
             GetClosestPlayerToBall().MoveTowardsBall(); 
             Players.ForEach(player => player.Move());
+        }
+
+        public void AddWin() //прибавляем победу к команде
+        {
+            Win+=1;
         }
     }
 }

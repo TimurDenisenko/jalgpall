@@ -9,7 +9,7 @@ namespace jalgpall
     public class Figure
     {
         protected List<Point> pList;
-        public void Draw()
+        public void Draw() //функция для рисования точек из списка точек
         {
             Console.ForegroundColor = ConsoleColor.Red;
             foreach (Point p in pList)
