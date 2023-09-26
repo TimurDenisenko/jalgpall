@@ -171,6 +171,7 @@ namespace jalgpall
 
         public int Menu()
         {
+            Console.Clear();
             int n;
             Console.WriteLine("[1] Taaskäivitage praeguste seadetega\n"
                                   +"[2] Taaskäivitage uute seadetega\n"
