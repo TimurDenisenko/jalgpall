@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,12 @@ namespace jalgpall
         public string Name { get; private set; } //Название команды с параметром публичного получения и приватной установки значения
         public Game Game { get; set; } //Назначение игры создавая обьект класса Game
         public int Win { get; set; }
+        public ConsoleColor Color { get; set; }
 
-        public Team(string name) //конструктор создания команды используя текстовое значение имени
+        public Team(string name, ConsoleColor color) //конструктор создания команды используя текстовое значение имени
         {
             Name = name;
+            Color = color;
         }
 
         public void StartGame(int width, int height, int team) //Начало игры учитывая параметры высоты и ширины 
@@ -26,14 +29,14 @@ namespace jalgpall
                 switch (team)
                 {
                     case 1:
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = Color;
                         player.SetPosition(
                         rnd.Next(1, width-1),
                         rnd.Next(4, height-1)
                         );
                         break;
                     case 2:
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = Color;
                         player.SetPosition(
                         rnd.Next(width/2+1, width-2),
                         rnd.Next(4, height-1)

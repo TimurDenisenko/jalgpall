@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace jalgpall
         public Team AwayTeam { get; private set;  } //Вторая аналогичная команда
         public Stadium Stadium { get; private set; } //Стадион, представитель класса Stadium, с параметром получения значения
         public Ball Ball { get; private set; } //Мяч, представитель класса Ball, с параметром публичного получения и приватной установки
+        public ConsoleColor HomeTeamColor { get; private set; }
+        public ConsoleColor AwayTeamColor { get; private set; }
 
         public Game(Team homeTeam, Team awayTeam, Stadium stadium) //конструктор игры при обьектах команды и стадион
         {
@@ -54,8 +57,8 @@ namespace jalgpall
 
         public void Move() //осуществляем передвижение команд и мяча
         {
-            HomeTeam.Move();
             AwayTeam.Move();
+            HomeTeam.Move();
             Ball.Move();
             CheckWin();
             Console.SetCursorPosition(0, 0);
@@ -84,7 +87,13 @@ namespace jalgpall
             }
         }
 
-        public Game Setting()
+        public void NullWin() //онулирования победы
+        {
+            AwayTeam.Win = 0;
+            HomeTeam.Win = 0;
+        }
+
+        public Game Setting() //настройка игры
         {
             int width;
             int height;
@@ -124,7 +133,9 @@ namespace jalgpall
             }
             Console.SetWindowSize(width, height);
             string t1name="";
-            string t2name="";  
+            string t2name="";
+            int color1 = 0;
+            int color2 = 0;
             do
             {
                 Console.Write("Esimese meeskonna nimi: ");
@@ -132,11 +143,36 @@ namespace jalgpall
             } while (t1name.Length==0 || t1name.Length>20);
             do
             {
+                try
+                {
+                    Console.Write("Meeskonna värv\n[1] Punane\n[2] Sinine\n[3] Valge\n[4] Roheline\n[5] Magenta\n[6] Hall\n");
+                    color1 = Int32.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            } while (color1<=0 || color1>=7);
+            do
+            {
                 Console.Write("Teise meeskonna nimi: ");
                 t2name = Console.ReadLine();
             } while (t2name.Length==0 || t2name.Length>20 || t2name==t1name);
-            Team t1 = new Team(t1name);
-            Team t2 = new Team(t2name);
+            do
+            {
+                try
+                {
+                    Console.Write("Meeskonna värv\n[1] Punane\n[2] Sinine\n[3] Valge\n[4] Roheline\n[5] Magenta\n[6] Hall\n");
+                    color2 = Int32.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                
+            } while (Convert.ToInt32(color2)<=0 || Convert.ToInt32(color2)>=7 || color1 == color2);
+            Team t1 = new Team(t1name, color1);
+            Team t2 = new Team(t2name, color2);
             int count;
             while (true)
             {
@@ -169,7 +205,7 @@ namespace jalgpall
             return game;
         }
 
-        public int Menu()
+        public int Menu() //меню перед игрой
         {
             Console.Clear();
             int n;

@@ -16,7 +16,7 @@ namespace jalgpall
         public Team? Team { get; set; } = null; //команда где играет игрок
 
         private const double MaxSpeed = 1; //максимальная скрость игрока
-        private const double MaxKickSpeed = 10; //максимальная скорость удара
+        private const double MaxKickSpeed = 5; //максимальная скорость удара
         private const double BallKickDistance = 2; //дистанция удара меча
 
         private Random _random = new Random(); //рандомное число
@@ -99,11 +99,11 @@ namespace jalgpall
                 switch (TeamInt)
                 {
                     case 1:
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = Team.Color;
                         SetPosition(Convert.ToInt32(X), Convert.ToInt32(Y));
                         break;
                     case 2:
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = Team.Color;
                         SetPosition(Convert.ToInt32(X), Convert.ToInt32(Y));
                         break;
                 }

@@ -10,7 +10,6 @@ namespace jalgpall
     {
         public static void Main()
         {
-            
             int n=0;
             while (n!=3)
             {
@@ -20,7 +19,9 @@ namespace jalgpall
                 {
                     n = game.Menu();
                     if (n==1)
-                    { }
+                    { 
+                        game.NullWin();
+                    }
                     else if (n==2 || n==3)
                     {
                         break;
